@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,11 +18,24 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $country = fake()->unique()->country();
+        $name = fake()->name();
 
         return [
-            'name' => $country,
-            'slug' => Str::slug($country),
+            'name' => $name,
+            'slug' => Str::slug($name),
+            'position' => 1
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (Category $category) {
+            $category->update(['position' => $category->id]);
+        });
     }
 }
