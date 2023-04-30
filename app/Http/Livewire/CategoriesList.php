@@ -105,7 +105,7 @@ class CategoriesList extends Component
  
     public function render()
     {
-        $cats = Category::orderBy('position')->paginate(10); 
+        $cats = Category::orderBy('position')->paginate(5); 
         $links = $cats->links();
         $this->categories = collect($cats->items());
 
