@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\CategoriesList;
 use App\Http\Livewire\ProductForm;
 use App\Http\Livewire\ProductsList;
+use App\Http\Livewire\OrdersList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('products', ProductsList::class)->name('products.index');
     Route::get('products/create', ProductForm::class)->name('products.create'); 
     Route::get('products/{product}', ProductForm::class)->name('products.edit');
+
+    Route::get('orders', OrdersList::class)->name('orders.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
